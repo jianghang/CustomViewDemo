@@ -1,0 +1,57 @@
+<com.example.customviewdemo.view.ChatLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chatlayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+    
+    <FrameLayout 
+        android:id="@+id/layout_above"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <TextView 
+            android:id="@+id/emptyTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Message"
+            android:layout_gravity="center"/>
+    </FrameLayout>
+    
+    <LinearLayout 
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:padding="2dp"
+        android:background="@android:color/darker_gray">
+        <EditText 
+            android:id="@+id/editText"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:maxLines="4"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:id="@+id/sendBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="bottom"
+            android:text="Send"/>
+    </LinearLayout>
+    
+    <ListView
+        android:id="@+id/chatListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/layout_above"
+        android:layout_above="@id/layout_bottom"
+        android:stackFromBottom="true"
+        android:divider="@null"
+        android:dividerHeight="2dp"
+        android:listSelector="@android:color/transparent"
+        android:scrollbarStyle="outsideOverlay" > 	
+	</ListView>
+</com.example.customviewdemo.view.ChatLayout>

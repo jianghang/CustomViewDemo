@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/shapedemo"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <Button 
+        android:id="@+id/listViewSimpleActiviry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ListViewSimple"/>
+    
+    <Button
+        android:id="@+id/chatListViewActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ChatListView"/>
+    
+    <Button
+        android:id="@+id/dynamicListViewActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DynamicListView"/>
+    
+    <Button
+        android:id="@+id/dragViewActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DragView"/>
+    
+    <Button
+        android:id="@+id/dragViewHelperActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DragViewHelper"/>
+    
+    <Button
+        android:id="@+id/bitmapColorActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BitmapColor"/>
+    
+    <Button 
+        android:id="@+id/PorterDuffActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PorterDuff"/>
+    
+    <Button 
+        android:id="@+id/PhotoWallActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PhotoWall"/>
+    
+</LinearLayout>
