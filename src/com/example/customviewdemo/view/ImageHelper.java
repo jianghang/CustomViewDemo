@@ -17,13 +17,21 @@ import android.media.ExifInterface;
 import android.util.Log;
 
 public class ImageHelper {
+	/**   
+	* @Title: handleImageEffect   
+	* @Description: 改变图片Rotate(色调)、Saturation(饱和度)、Scale(亮度)
+	* @param bm
+	* @param hue
+	* @param saturation
+	* @param lum
+	* @return: Bitmap      
+	* @throws   
+	*/  
 	public static Bitmap handleImageEffect(Bitmap bm, float hue,
 			float saturation, float lum) {
 		Bitmap bmp = Bitmap.createBitmap(bm.getWidth(), bm.getHeight(),
 				Config.ARGB_8888);
 
-		// System.out.println("width: " + bm.getWidth() + " height: " +
-		// bm.getHeight());
 		Canvas canvas = new Canvas(bmp);
 		Paint paint = new Paint();
 
@@ -48,28 +56,59 @@ public class ImageHelper {
 
 		return bmp;
 	}
-	
-	public static Bitmap decodeSampledBitmapFromFileDescriptor(FileDescriptor fd,int reqWidth,int reqHeight){
+
+	/**   
+	* @Title: decodeSampledBitmapFromFileDescriptor   
+	* @Description: 从FileDescriptor加载图片同时根据你需要的宽高进行缩放
+	* @param fd
+	* @param reqWidth
+	* @param reqHeight
+	* @return: Bitmap      
+	* @throws   
+	*/  
+	public static Bitmap decodeSampledBitmapFromFileDescriptor(
+			FileDescriptor fd, int reqWidth, int reqHeight) {
 		final BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
 		BitmapFactory.decodeFileDescriptor(fd, null, options);
-		options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+		options.inSampleSize = calculateInSampleSize(options, reqWidth,
+				reqHeight);
 		options.inJustDecodeBounds = false;
-		
+
 		return BitmapFactory.decodeFileDescriptor(fd, null, options);
 	}
 
+	/**   
+	* @Title: decodeSampledBitmapFromResource   
+	* @Description: 从资源文件夹加载图同时根据你需要的宽高进行缩放
+	* @param res
+	* @param resId
+	* @param reqWidth
+	* @param reqHeight
+	* @return: Bitmap      
+	* @throws   
+	*/  
 	public static Bitmap decodeSampledBitmapFromResource(Resources res,
 			int resId, int reqWidth, int reqHeight) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inJustDecodeBounds = true;
 		BitmapFactory.decodeResource(res, resId, options);
-		options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+		options.inSampleSize = calculateInSampleSize(options, reqWidth,
+				reqHeight);
 		options.inJustDecodeBounds = false;
 
 		return BitmapFactory.decodeResource(res, resId, options);
 	}
 
+	/**   
+	* @Title: decodeSampledBitmapFromFile   
+	* @Description: 从文件路径加载图片同时根据你需要的宽高进行缩放
+	* @param filepath
+	* @param reqWidth
+	* @param reqHeight
+	* @return: Bitmap      
+	* @throws   
+	*/  
 	public static Bitmap decodeSampledBitmapFromFile(String filepath,
 			int reqWidth, int reqHeight) {
 		BitmapFactory.Options options = new BitmapFactory.Options();
@@ -87,6 +126,15 @@ public class ImageHelper {
 		return BitmapFactory.decodeFile(filepath, options);
 	}
 
+	/**   
+	* @Title: calculateInSampleSize   
+	* @Description: 根据接收的宽高计算图片的缩放比
+	* @param options
+	* @param reqWidth
+	* @param reqHeight
+	* @return: int      
+	* @throws   
+	*/  
 	private static int calculateInSampleSize(Options options, int reqWidth,
 			int reqHeight) {
 		int height = options.outHeight;
@@ -105,6 +153,14 @@ public class ImageHelper {
 		return inSampledSize;
 	}
 
+	/**   
+	* @Title: rotateImage   
+	* @Description: 检测加载的图片是否是90度正的，如果不是则旋转为90度正
+	* @param bm
+	* @param filepath
+	* @return: Bitmap      
+	* @throws   
+	*/  
 	public static Bitmap rotateImage(Bitmap bm, String filepath) {
 		try {
 			ExifInterface exifInterface = new ExifInterface(filepath);
@@ -137,7 +193,7 @@ public class ImageHelper {
 				matrix.setRotate(rotate);
 				Bitmap rotateBitmap = Bitmap.createBitmap(bm, 0, 0,
 						bm.getWidth(), bm.getHeight(), matrix, true);
-				if(rotateBitmap != null){
+				if (rotateBitmap != null) {
 					bm.recycle();
 					bm = rotateBitmap;
 				}

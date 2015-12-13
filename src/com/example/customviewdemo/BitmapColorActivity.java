@@ -104,7 +104,7 @@ public class BitmapColorActivity extends Activity implements
 		PopupWindow popupwindow = new PopupWindow(contentView,
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, true);
 		popupwindow.setBackgroundDrawable(getResources().getDrawable(
-				R.drawable.shapedemo));
+				R.drawable.shapedemo));//使用PopupWindow需要设定背景，不然会出现奇怪的问题（实测）
 		popupwindow.showAsDropDown(v);
 	}
 
@@ -122,7 +122,7 @@ public class BitmapColorActivity extends Activity implements
 		case R.id.add_bitmap:
 			Intent intent = new Intent(
 					Intent.ACTION_PICK,
-					android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+					android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);//调用系统相册
 			startActivityForResult(intent, CROP_PHOTO);
 
 			break;
@@ -133,6 +133,14 @@ public class BitmapColorActivity extends Activity implements
 		return super.onOptionsItemSelected(item);
 	}
 
+	/**   
+	* <p>Title: onActivityResult</p>   
+	* <p>Description: </p>   
+	* @param requestCode
+	* @param resultCode
+	* @param data   
+	* @see 接收系统相册返回的文件路径
+	*/  
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
